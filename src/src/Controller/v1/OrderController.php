@@ -55,8 +55,9 @@ class OrderController extends BaseController
      * @Route("/orders", name="orders_create", methods={"POST"})
      */
     public function create(CreateOrderRequest $request){
-        $user = $this->userRepository->find($request->get('user_id'));
-        $order = $this->orderRepository->create($user, $request->all());
+        $params = $request->all();
+        $user = $this->userRepository->find($params['user_id']);
+        $order = $this->orderRepository->create($user, $params);
         return $this->response([
             'message' => 'Order successfully created.',
             'data' => [

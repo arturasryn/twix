@@ -17,15 +17,13 @@ use Symfony\Component\Validator\Constraints\
 
 class UpdateUserRequest extends BaseRequest
 {
-    private $em;
     private $user_id;
     private $request;
 
     protected const ALLOW_MISSING_FIELDS = true;
 
-    public function __construct(RequestStack $r, EntityManagerInterface $em)
+    public function __construct(RequestStack $r)
     {
-        $this->em = $em;
         $this->request = $r->getCurrentRequest();
         $this->user_id = $this->request->get('id');
 
@@ -35,7 +33,7 @@ class UpdateUserRequest extends BaseRequest
     protected function getFields() : array
     {
         $fields = [
-            'id' => [new Required(), new EntityExist(['em' => $this->em, 'class' => User::class])]
+            'id' => [new Required(), new EntityExist(['class' => User::class])]
         ];
 
         if($this->request->get('name')) {
@@ -47,7 +45,6 @@ class UpdateUserRequest extends BaseRequest
                 new Length(['max' => 255]),
                 new Email(),
                 new UniqueField([
-                    'em' => $this->em,
                     'class' => User::class,
                     'field' => 'email',
                     'ignore_id' => $this->user_id

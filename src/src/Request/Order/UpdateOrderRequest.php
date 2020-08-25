@@ -20,13 +20,11 @@ class UpdateOrderRequest extends BaseRequest
 {
     protected const ALLOW_MISSING_FIELDS = true;
 
-    private $em;
     private $order_id;
     private $request;
 
-    public function __construct(RequestStack $requestStack, EntityManagerInterface $em)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->em = $em;
         $this->request = $requestStack->getCurrentRequest();
         $this->order_id = $this->request->get('id');
 
@@ -36,11 +34,11 @@ class UpdateOrderRequest extends BaseRequest
     protected function getFields() : array
     {
         $fields = [
-            'id' => [new Required(), new EntityExist(['em' => $this->em, 'class' => Order::class])]
+            'id' => [new Required(), new EntityExist(['class' => Order::class])]
         ];
 
         if($this->request->get('user_id')) {
-            $fields['user_id'] = [new EntityExist(['em' => $this->em, 'class' => User::class])];
+            $fields['user_id'] = [new EntityExist(['class' => User::class])];
         }
 
         if($this->request->get('status')) {
@@ -49,7 +47,6 @@ class UpdateOrderRequest extends BaseRequest
 
         if($this->request->get('number')) {
             $fields['number'] = [new NotBlank(), new UniqueField([
-                'em' => $this->em,
                 'class' => Order::class,
                 'field' => 'number',
                 'ignore_id' => $this->order_id

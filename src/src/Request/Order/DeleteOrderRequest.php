@@ -15,18 +15,10 @@ use Symfony\Component\Validator\Constraints\
 
 class DeleteOrderRequest extends BaseRequest
 {
-    private $em;
-
-    public function __construct(RequestStack $r, EntityManagerInterface $em)
-    {
-        $this->em = $em;
-        parent::__construct($r);
-    }
-
     protected function getFields() : array
     {
         return [
-            'id'   => [new Required(), new EntityExist(['em' => $this->em, 'class' => Order::class])]
+            'id'   => [new Required(), new EntityExist(['class' => Order::class])]
         ];
     }
 }

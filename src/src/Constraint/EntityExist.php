@@ -9,10 +9,9 @@ class EntityExist extends Constraint
     public $message = 'Entity does not exist.';
     public $property = 'id';
     public $class;
-    public $em;
 
     public function getRequiredOptions()
     {
-        return ['em', 'class'];
+        return ['class'];
     }
 }

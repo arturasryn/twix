@@ -20,12 +20,10 @@ class CreateOrderRequest extends BaseRequest
 {
     protected const ALLOW_MISSING_FIELDS = true;
 
-    private $em;
     private $request;
 
-    public function __construct(RequestStack $requestStack, EntityManagerInterface $em)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->em = $em;
         $this->request = $requestStack->getCurrentRequest();
         parent::__construct($requestStack);
     }
@@ -33,12 +31,12 @@ class CreateOrderRequest extends BaseRequest
     protected function getFields() : array
     {
         $fields = [
-            'user_id' => [new Required(), new EntityExist(['em' => $this->em, 'class' => User::class])],
+            'user_id' => [new Required(), new EntityExist(['class' => User::class])],
             'status' => [new Required(), new HasValue( ['values' => array_keys(Order::STATUSES)])]
         ];
 
         if($this->request->get('number')) {
-            $fields['number'] = [new NotBlank(), new UniqueField(['em' => $this->em, 'class' => Order::class, 'field' => 'number'])];
+            $fields['number'] = [new NotBlank(), new UniqueField(['class' => Order::class, 'field' => 'number'])];
         }
 
         return $fields;

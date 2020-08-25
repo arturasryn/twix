@@ -3,9 +3,17 @@ namespace App\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use App\Facade\Facade;
 
 class EntityExistValidator extends ConstraintValidator
 {
+    private $em;
+
+    public function __construct()
+    {
+        $this->em = Facade::get('doctrine.orm.entity_manager');
+    }
+
     public function validate($value, Constraint $constraint): void
     {
         if (empty($value)) {
@@ -20,7 +28,7 @@ class EntityExistValidator extends ConstraintValidator
             throw new \LogicException(\sprintf('Must set "entity" on "%s" validator', EntityExist::class));
         }
 
-        $data = $constraint->em->getRepository($constraint->class)->findOneBy([
+        $data = $this->em->getRepository($constraint->class)->findOneBy([
             $constraint->property => $value,
         ]);
 
