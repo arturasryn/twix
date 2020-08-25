@@ -4,7 +4,7 @@ namespace App\Requests\User;
 
 use App\Constraints\EntityExist;
 use App\Entity\User;
-use App\Requests\BaseValidation;
+use App\Requests\BaseRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraints\
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\
 };
 
 
-class FindUserRequest extends BaseValidation
+class FindUserRequest extends BaseRequest
 {
     private $em;
 
