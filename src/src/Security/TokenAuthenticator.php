@@ -70,7 +70,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 //             $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         );
 
-        return new JsonResponse($data, 400, []);
+        return new JsonResponse($data, 401, []);
     }
 
     /**
