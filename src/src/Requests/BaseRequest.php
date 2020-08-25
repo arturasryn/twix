@@ -4,6 +4,7 @@ namespace App\Requests;
 
 use App\Exception\ValidationException;
 use App\Traits\ValidationAwareTrait;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Validator\Constraints\Collection;
@@ -27,10 +28,10 @@ class BaseRequest
         $this->httpRequest = $request->getCurrentRequest();
         $this->validator = Validation::createValidator();
 
-        $this->initialize();
+        $this->init();
     }
 
-    final public function initialize() : void
+    final public function init() : void
     {
         if (!$this->passesAuthorization()) {
             $this->failedAuthorization();
@@ -44,12 +45,19 @@ class BaseRequest
      *
      * @return array
      */
-    final public function all() : array
+    public function all() : array
     {
+        $params_from_json = [];
+
+        if (0 === strpos($this->httpRequest->headers->get('Content-Type'), 'application/json')) {
+            $params_from_json = json_decode($this->httpRequest->getContent(), true);
+        }
+
         return $this->httpRequest->attributes->all()
             + $this->httpRequest->query->all()
             + $this->httpRequest->request->all()
-            + $this->httpRequest->files->all();
+            + $this->httpRequest->files->all()
+            + $params_from_json;
     }
 
     /**
@@ -107,5 +115,10 @@ class BaseRequest
         }
 
         return true;
+    }
+
+    public function getHttpRequest(): ?Request
+    {
+        return $this->httpRequest;
     }
 }
