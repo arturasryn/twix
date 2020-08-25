@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\v1;
 
+use App\Controller\BaseController;
 use App\Repository\UserRepository;
 use App\Requests\User\CreateUserRequest;
 use App\Requests\User\DeleteUserRequest;
@@ -28,7 +29,7 @@ class UserController extends BaseController
     /**
      * @param Request $request
      * @return JsonResponse
-     * @Route("/v1/users", name="users", methods={"GET"})
+     * @Route("/users", name="users", methods={"GET"})
      */
     public function all(Request $request){
 
@@ -50,7 +51,7 @@ class UserController extends BaseController
     /**
      * @param CreateUserRequest $request
      * @return JsonResponse
-     * @Route("/v1/users", name="users_create", methods={"POST"})
+     * @Route("/users", name="users_create", methods={"POST"})
      */
     public function create(CreateUserRequest $request){
         $user = $this->userRepository->save($request->all());
@@ -68,7 +69,7 @@ class UserController extends BaseController
      * @param $id
      * @param FindUserRequest $request
      * @return JsonResponse
-     * @Route("/v1/users/{id}", name="users_get", methods={"GET"})
+     * @Route("/users/{id}", name="users_get", methods={"GET"})
      */
     public function find($id, FindUserRequest $request){
         $user = $this->userRepository->find($id);
@@ -78,7 +79,7 @@ class UserController extends BaseController
     /**
      * @param UpdateUserRequest $request
      * @return JsonResponse
-     * @Route("/v1/users/{id}", name="users_update", methods={"PUT"})
+     * @Route("/users/{id}", name="users_update", methods={"PUT"})
      */
     public function update(UpdateUserRequest $request){
         $this->userRepository->save($request->all());
@@ -91,7 +92,7 @@ class UserController extends BaseController
     /**
      * @param DeleteUserRequest $request
      * @return JsonResponse
-     * @Route("/v1/users/{id}", name="users_delete", methods={"DELETE"})
+     * @Route("/users/{id}", name="users_delete", methods={"DELETE"})
      */
     public function delete(DeleteUserRequest $request) {
         $this->userRepository->delete($request->get('id'));
@@ -103,7 +104,7 @@ class UserController extends BaseController
     /**
      * @param Request $request
      * @return JsonResponse
-     * @Route("/v1/users/{id}/orders", name="user_orders", methods={"GET"})
+     * @Route("/users/{id}/orders", name="user_orders", methods={"GET"})
      */
     public function orders(Request $request) {
         $orders = $this->userRepository->orders($request->get('id'));

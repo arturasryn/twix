@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\v1;
 
+use App\Controller\BaseController;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use App\Requests\Order\DeleteOrderRequest;
@@ -30,7 +31,7 @@ class OrderController extends BaseController
     /**
      * @param Request $request
      * @return JsonResponse
-     * @Route("/v1/orders", name="orders", methods={"GET"})
+     * @Route("/orders", name="orders", methods={"GET"})
      */
     public function all(Request $request){
         $query = $this->orderRepository->query();
@@ -51,7 +52,7 @@ class OrderController extends BaseController
     /**
      * @param CreateOrderRequest $request
      * @return JsonResponse
-     * @Route("/v1/orders", name="orders_create", methods={"POST"})
+     * @Route("/orders", name="orders_create", methods={"POST"})
      */
     public function create(CreateOrderRequest $request){
         $user = $this->userRepository->find($request->get('user_id'));
@@ -71,7 +72,7 @@ class OrderController extends BaseController
      * @param $id
      * @param FindOrderRequest $request
      * @return JsonResponse
-     * @Route("/v1/orders/{id}", name="orders_get", methods={"GET"})
+     * @Route("/orders/{id}", name="orders_get", methods={"GET"})
      */
     public function find($id, FindOrderRequest $request){
         $order = $this->orderRepository->find($id);
@@ -81,7 +82,7 @@ class OrderController extends BaseController
     /**
      * @param UpdateOrderRequest $request
      * @return JsonResponse
-     * @Route("/v1/orders/{id}", name="orders_update", methods={"PUT"})
+     * @Route("/orders/{id}", name="orders_update", methods={"PUT"})
      */
     public function update(UpdateOrderRequest $request){
         $this->orderRepository->save($request->all());
@@ -94,7 +95,7 @@ class OrderController extends BaseController
     /**
      * @param DeleteOrderRequest $request
      * @return JsonResponse
-     * @Route("/v1/orders/{id}", name="orders_delete", methods={"DELETE"})
+     * @Route("/orders/{id}", name="orders_delete", methods={"DELETE"})
      */
     public function delete(DeleteOrderRequest $request) {
         $this->orderRepository->delete($request->get('id'));
