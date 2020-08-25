@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\Util;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;

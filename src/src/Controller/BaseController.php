@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Requests\BaseRequest;
+use App\Request\BaseRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Requests\User;
+namespace App\Request\User;
 
-use App\Constraints\HasValue;
-use App\Constraints\UniqueField;
+use App\Constraint\HasValue;
+use App\Constraint\UniqueField;
 use App\Entity\User;
-use App\Requests\BaseRequest;
+use App\Request\BaseRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraints\

@@ -4,10 +4,10 @@ namespace App\Controller\v1;
 
 use App\Controller\BaseController;
 use App\Repository\UserRepository;
-use App\Requests\User\CreateUserRequest;
-use App\Requests\User\DeleteUserRequest;
-use App\Requests\User\FindUserRequest;
-use App\Requests\User\UpdateUserRequest;
+use App\Request\User\CreateUserRequest;
+use App\Request\User\DeleteUserRequest;
+use App\Request\User\FindUserRequest;
+use App\Request\User\UpdateUserRequest;
 use App\Service\PaginationService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

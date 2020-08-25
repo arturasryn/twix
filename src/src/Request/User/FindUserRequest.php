@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Requests\User;
+namespace App\Request\User;
 
-use App\Constraints\EntityExist;
+use App\Constraint\EntityExist;
 use App\Entity\User;
-use App\Requests\BaseRequest;
+use App\Request\BaseRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraints\
@@ -12,7 +12,8 @@ use Symfony\Component\Validator\Constraints\
     Required
 };
 
-class DeleteUserRequest extends BaseRequest
+
+class FindUserRequest extends BaseRequest
 {
     private $em;
 

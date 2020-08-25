@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Requests\Order;
+namespace App\Request\Order;
 
-use App\Constraints\EntityExist;
-use App\Constraints\HasValue;
-use App\Constraints\UniqueField;
+use App\Constraint\EntityExist;
+use App\Constraint\HasValue;
+use App\Constraint\UniqueField;
 use App\Entity\Order;
 use App\Entity\User;
-use App\Requests\BaseRequest;
+use App\Request\BaseRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraints\

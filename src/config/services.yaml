@@ -31,6 +31,6 @@ services:
     # please note that last definitions always *replace* previous ones
 
     validation_exception.listener:
-        class: App\Listeners\ExceptionListener
+        class: App\Listener\ExceptionListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

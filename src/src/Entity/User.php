@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use App\Traits\Timestamps;
+use App\Util\Timestamps;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

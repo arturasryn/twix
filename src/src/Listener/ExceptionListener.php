@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listener;
 
 use App\Exception\ValidationException;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\OrderRepository;
-use App\Traits\Timestamps;
+use App\Util\Timestamps;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\PrePersist;

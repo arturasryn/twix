@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Requests;
+namespace App\Request;
 
 use App\Exception\ValidationException;
-use App\Traits\ValidationAwareTrait;
+use App\Util\ValidationAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;

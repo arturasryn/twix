@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Requests\Order;
+namespace App\Request\Order;
 
-use App\Constraints\EntityExist;
+use App\Constraint\EntityExist;
 use App\Entity\Order;
-use App\Requests\BaseRequest;
+use App\Request\BaseRequest;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraints\
