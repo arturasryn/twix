@@ -1,7 +1,6 @@
 <?php
 namespace App\Constraints;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
